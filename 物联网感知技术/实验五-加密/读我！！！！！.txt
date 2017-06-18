@@ -1,0 +1,13 @@
+使用c++编译aes需要openssl库的支持
+
+openssl库需要进行编译后才能使用，推荐使用vs2013以上版本进行编译（2015最好）
+
+win10 vs2015 openssl-1.0.2j编译
+
+http://blog.csdn.net/longji/article/details/53573173  win10 vs2015 openssl-1.0.2j编译
+以上链接中，按教程若运行bat后没有编译成功请尝试，手动进入cmd，进入对应目录输入bat文件中的命令
+
+vc6.0编译OpenSSL两种方法(2015.5更新)
+https://wenku.baidu.com/view/8c3404ae2af90242a895e5bb.html
+
+电脑里未安装vc6.0，该教程没有进行尝试并成功。若无法编译，请手动百度其它教程。 

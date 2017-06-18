@@ -1,0 +1,111 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <fstream>
+#include <string>
+#include <stdio.h>
+#include <assert.h>
+#include <openssl\evp.h>
+#include <openssl\objects.h>
+
+using namespace std;
+
+string aesEncrypt(string &data, string &key)
+{
+	unsigned char* out = new unsigned char[data.length()+64];
+	int len,outl;
+	len = 0;
+	EVP_CIPHER_CTX ctx;
+	EVP_CIPHER_CTX_init(&ctx);//初始化ctx
+	EVP_EncryptInit_ex(&ctx, EVP_aes_128_ecb(), NULL, (const unsigned char *)key.data(), NULL);//初始化加密方式（*ctx，加密方式，引擎，key，额外选项）
+	EVP_EncryptUpdate(&ctx, out, &outl, (unsigned char*)data.data(),data.length());//加密 (*ctx，加密后数据，加密长度，要加密的内容，要加密的长度)
+	len += outl;
+	EVP_EncryptFinal_ex(&ctx, out+len, &outl); //aes加密为64位作为一块，末尾不足的填补后再加密(*ctx，加密后数据，最后加密的长度)
+	len += outl;
+	string result((char*)out, len);//用的string存数据，用char[]不需要这步
+	return result;
+}
+
+string desDecrypt(string &data, string &key)
+{
+	unsigned char* out = new unsigned char[data.length() + 64];
+	int len, outl;
+	int ret;
+	len = 0;
+	EVP_CIPHER_CTX ctx;
+	EVP_CIPHER_CTX_init(&ctx);
+	EVP_DecryptInit_ex(&ctx, EVP_aes_128_ecb(), NULL, (const unsigned char *)key.data(), NULL);//类比加密，下同
+	EVP_DecryptUpdate(&ctx, out, &outl, (unsigned char *)data.data(), data.length());
+	len += outl;
+	EVP_DecryptFinal_ex(&ctx, out + len, &outl);
+	len += outl;
+	string result((char*)out, len);
+	return result;
+}
+
+void write(string fName, string wData) { //写文件函数
+	ofstream out(fName); //fstream子类 
+	if (out.is_open()) {
+		out << wData;
+		out.close();
+	}
+}
+
+string readF(string fName) { //读文件函数
+	char buffer[256]; //fstream子类
+	string result = "";
+	ifstream in(fName);
+	if (!in.is_open())
+	{
+		cout << "打开文件失败！";system("pause"); exit(1);
+	}
+	while (!in.eof())
+	{
+		in.getline(buffer, 100);  //getline函数第三个参数为结束符，不填的时候为\n
+		result.append(buffer);
+		if (in.eof())break;
+		result.append("\n");      //为了不舍弃文本中的\n，当一行结束后手动加一个\n字符
+	}
+	in.close();
+	return result;   //返回文本内容
+}
+
+int main() {
+	setlocale(LC_ALL, "");
+	
+	string key = "hellodes";
+	string studentID;
+	stringstream ss;
+	double money;
+	string Money;
+	string out;
+	string result[2];
+
+	//以下为第三步的代码
+	/*
+	cout << "请输入学号:";
+	cin >> studentID;
+	cin.clear();
+	cin.sync();
+	cout << "请输入余额:";
+	scanf("%lf", &money);
+	ss << fixed << setprecision(2) << money;
+	Money = ss.str();
+	cout << "要加密的数据为:" << studentID << "  " << Money << endl;
+	result[0] = aesEncrypt(studentID, key);
+	result[1] = aesEncrypt(Money, key);
+	cout << "解密后的数据为:" << desDecrypt(result[0], key) << " " << desDecrypt(result[1], key) << endl;
+	*/
+	
+	cout << readF("F:\\Develop\\IOT\\input.txt") << endl;
+    write("F:\\Develop\\IOT\\data.bin",aesEncrypt(readF("F:\\Develop\\IOT\\input.txt"),key));
+	write("F:\\Develop\\IOT\\output.txt", desDecrypt(readF("F:\\Develop\\IOT\\data.bin"), key));
+
+	string f1 = readF("F:\\Develop\\IOT\\input.txt");
+	string f2 = readF("F:\\Develop\\IOT\\output.txt");
+
+	if (!f1.compare(f2))cout << "两个文件相同" << endl;
+
+	system("pause");
+}
