@@ -1,0 +1,14 @@
+y=0;
+n=0;
+while(y<3)
+    n=n+1;
+    y=y+1/(2*n-1);
+end
+if(y>3)
+    y=y-1/(2*n-1);
+    n=n-1;
+end
+disp('y小于3时最大的n值为：');
+disp(n);
+disp('对应的y值为：')
+disp(y)
