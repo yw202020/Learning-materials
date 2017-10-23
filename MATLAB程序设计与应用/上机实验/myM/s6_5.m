@@ -1,0 +1,10 @@
+x=linspace(-5,5,21);
+y=linspace(0,10,31);
+[x,y]=meshgrid(x,y);
+z=cos(x).*cos(y).*exp(-sqrt(x.^2+y.^2)/4);
+subplot(1,2,1);
+surf(x,y,z)
+title('surf')
+subplot(1,2,2);
+contour3(x,y,z,90)
+title('contour3')

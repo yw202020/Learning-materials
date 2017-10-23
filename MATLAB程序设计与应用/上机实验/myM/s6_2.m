@@ -1,0 +1,11 @@
+x=-10:0.1:10;
+y1=x.*x;
+y2=cos(2*x);
+y3=y1.*y2;
+%plot(x,y1,'-r',x,y2,':g',x,y3,'*k')
+subplot(1,3,1);
+plot(x,y1,'-r')
+subplot(1,3,2);
+plot(x,y2,':g')
+subplot(1,3,3);
+plot(x,y3,'*k')
