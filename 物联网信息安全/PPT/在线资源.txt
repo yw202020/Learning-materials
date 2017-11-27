@@ -1,0 +1,53 @@
+一。感知层的安全
+
+物联网中的信息安全与隐私保护:http://v.qq.com/vplus/82e40faf7f3507cd7644623919635a4a
+任务4： 全球GPS定位系统新威胁分析: https://edu.aqniu.com/course/186/tasks
+孙冰：物联网平台的安全挑战及应对策略:https://v.qq.com/x/page/q0554r0e72j.html
+网络安全与管理精讲视频课程:http://edu.51cto.com/course/64.html
+
+二。网络层的安全
+中美战略中的网络空间博弈    https://edu.aqniu.com/course/179/task/1760/show
+万物相联之下的安全生态   https://edu.aqniu.com/course/186/task/1842/show
+被反转的网络：嵌入式安全的新观点  https://edu.aqniu.com/course/186/task/1843/show
+传感设备的心脏滴血  https://edu.aqniu.com/course/186/task/1844/show
+物联网设备硬件设计的安全隐患、挑战和机遇    https://edu.aqniu.com/course/186/task/1846/show
+任务6： 构建基于密码芯片的物联网安全芯片-樊俊锋  https://edu.aqniu.com/course/186/task/1847/show
+网络安全攻防实战课:https://ke.qq.com/course/248580
+第一章 网络安全入坑指南 
+第二章 网络安全攻击与防御 
+第三章 Kali Linux渗透测试 
+第四章 WiFi无线渗透测试 
+第五章 个人信息安全防范指南 
+移动终端安全:http://www.icourse163.org/course/HEPSVE-1001910004
+单元一: 明明白白用Wi-Fi
+         1.1 谁动了我的Wi-Fi
+         1.2  防范家庭无线路由器被入侵
+         1.3 公共Wi-Fi的常用认证方式
+         1.4  真假公共Wi-Fi都要防
+单元二: 揭秘“伪基站”
+2.1 伪基站怎么“伪”
+2.2 伪基站有多“坏”
+2.3 伪基站如何“防”
+单元三: 防范移动终端木马和病毒
+3.1 提升安卓手机的"免疫力"
+3.2 苹果手机百毒不侵吗？
+3.3 万一中毒了怎么办？
+单元四: 准备好你的手机
+4.1 未雨绸缪——做好手机备份
+4.2 手机丢了怎么办?
+单元五:重视移动支付安全
+5.1 认识互联网金融的核心“移动支付”
+5.2 打死都不能说的验证码
+5.3 小心二维码
+
+三。应用层的安全
+Web前端安全与实践  https://ke.qq.com/course/203534
+边学边玩-网络协议web漏洞深度解析    http://study.163.com/course/introduction/1003590022.htm
+Wireshark协议分析从入门到精通：http://study.163.com/course/introduction.htm?courseId=1004178077#/courseDetail?tab=1
+Windows开机密码获取：http://study.163.com/course/introduction.htm?courseId=1004098030#/courseDetail?tab=1
+第三方支付技术-安全与应用:http://study.163.com/course/introduction.htm?courseId=1004453003#/courseDetail?tab=1
+数据安全：https://edu.aqniu.com/course/380/tasks
+
+JAVA生成和解析二维码：https://ke.qq.com/course/238757
+快速掌握iOS二维码生成、扫描技术：https://ke.qq.com/course/149159
+
