@@ -9,23 +9,23 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-public class server01 {
+public class server {
 
-//	·½Ê½Ò»
+//	æ–¹å¼ä¸€
 	public static void ServerReceviedByTcp() {
-        // ÉùÃ÷Ò»¸öServerSocket¶ÔÏó
+        // å£°æ˜ä¸€ä¸ªServerSocketå¯¹è±¡
         ServerSocket serverSocket = null;
         try {
-            // ´´½¨Ò»¸öServerSocket¶ÔÏó£¬²¢ÈÃÕâ¸öSocketÔÚ1989¶Ë¿Ú¼àÌı
+            // åˆ›å»ºä¸€ä¸ªServerSocketå¯¹è±¡ï¼Œå¹¶è®©è¿™ä¸ªSocketåœ¨1989ç«¯å£ç›‘å¬
             serverSocket = new ServerSocket(1989);
-            // µ÷ÓÃServerSocketµÄaccept()·½·¨£¬½ÓÊÜ¿Í»§¶ËËù·¢ËÍµÄÇëÇó£¬
-            // Èç¹û¿Í»§¶ËÃ»ÓĞ·¢ËÍÊı¾İ£¬ÄÇÃ´¸ÃÏß³Ì¾ÍÍ£ÖÍ²»¼ÌĞø
+            // è°ƒç”¨ServerSocketçš„accept()æ–¹æ³•ï¼Œæ¥å—å®¢æˆ·ç«¯æ‰€å‘é€çš„è¯·æ±‚ï¼Œ
+            // å¦‚æœå®¢æˆ·ç«¯æ²¡æœ‰å‘é€æ•°æ®ï¼Œé‚£ä¹ˆè¯¥çº¿ç¨‹å°±åœæ»ä¸ç»§ç»­
             Socket socket = serverSocket.accept();
-            // ´ÓSocketµ±ÖĞµÃµ½InputStream¶ÔÏó
+            // ä»Socketå½“ä¸­å¾—åˆ°InputStreamå¯¹è±¡
             InputStream inputStream = socket.getInputStream();
             byte buffer[] = new byte[1024 * 4];
             int temp = 0;
-            // ´ÓInputStreamµ±ÖĞ¶ÁÈ¡¿Í»§¶ËËù·¢ËÍµÄÊı¾İ
+            // ä»InputStreamå½“ä¸­è¯»å–å®¢æˆ·ç«¯æ‰€å‘é€çš„æ•°æ®
             while ((temp = inputStream.read(buffer)) != -1) {
                 System.out.println(new String(buffer, 0, temp));
             }
@@ -37,29 +37,28 @@ public class server01 {
     }
 
 
-//	·½Ê½¶ş
+//	æ–¹å¼äºŒ
 	public static void ServerReceviedByUdp(){
-        //´´½¨Ò»¸öDatagramSocket¶ÔÏó£¬²¢Ö¸¶¨¼àÌı¶Ë¿Ú¡££¨UDPÊ¹ÓÃDatagramSocket£©  
+        //åˆ›å»ºä¸€ä¸ªDatagramSocketå¯¹è±¡ï¼Œå¹¶æŒ‡å®šç›‘å¬ç«¯å£ã€‚ï¼ˆUDPä½¿ç”¨DatagramSocketï¼‰  
         DatagramSocket socket;
         try {
             socket = new DatagramSocket(10025);
-            //´´½¨Ò»¸öbyteÀàĞÍµÄÊı×é£¬ÓÃÓÚ´æ·Å½ÓÊÕµ½µÃÊı¾İ  
+            //åˆ›å»ºä¸€ä¸ªbyteç±»å‹çš„æ•°ç»„ï¼Œç”¨äºå­˜æ”¾æ¥æ”¶åˆ°å¾—æ•°æ®  
             byte data[] = new byte[4*1024];  
-            //´´½¨Ò»¸öDatagramPacket¶ÔÏó£¬²¢Ö¸¶¨DatagramPacket¶ÔÏóµÄ´óĞ¡  
+            //åˆ›å»ºä¸€ä¸ªDatagramPacketå¯¹è±¡ï¼Œå¹¶æŒ‡å®šDatagramPacketå¯¹è±¡çš„å¤§å°  
             DatagramPacket packet = new DatagramPacket(data,data.length);  
-            //¶ÁÈ¡½ÓÊÕµ½µÃÊı¾İ  
+            //è¯»å–æ¥æ”¶åˆ°å¾—æ•°æ®  
             while(true){
             socket.receive(packet);  
-            //°Ñ¿Í»§¶Ë·¢ËÍµÄÊı¾İ×ª»»Îª×Ö·û´®¡£  
-            //Ê¹ÓÃÈı¸ö²ÎÊıµÄString·½·¨¡£²ÎÊıÒ»£ºÊı¾İ°ü ²ÎÊı¶ş£ºÆğÊ¼Î»ÖÃ ²ÎÊıÈı£ºÊı¾İ°ü³¤  
+            //æŠŠå®¢æˆ·ç«¯å‘é€çš„æ•°æ®è½¬æ¢ä¸ºå­—ç¬¦ä¸²ã€‚  
+            //ä½¿ç”¨ä¸‰ä¸ªå‚æ•°çš„Stringæ–¹æ³•ã€‚å‚æ•°ä¸€ï¼šæ•°æ®åŒ… å‚æ•°äºŒï¼šèµ·å§‹ä½ç½® å‚æ•°ä¸‰ï¼šæ•°æ®åŒ…é•¿  
             String result = new String(packet.getData(),packet.getOffset() ,packet.getLength());  
             System.out.println("result:"+result);
             
-
-            byte data2[] = new byte[4*1024];  
-            //´´½¨Ò»¸öDatagramPacket¶ÔÏó£¬²¢Ö¸¶¨DatagramPacket¶ÔÏóµÄ´óĞ¡  
-            DatagramPacket packet2 = new DatagramPacket(data2,data2.length);  
-            socket.send(packet);
+//            byte data2[] = new byte[4*1024];  
+//            //åˆ›å»ºä¸€ä¸ªDatagramPacketå¯¹è±¡ï¼Œå¹¶æŒ‡å®šDatagramPacketå¯¹è±¡çš„å¤§å°  
+//            DatagramPacket packet2 = new DatagramPacket(data2,data2.length);  
+//            socket.send(packet);
             }
         } catch (SocketException e) {
             e.printStackTrace();
@@ -71,7 +70,7 @@ public class server01 {
 	private void sleep(){
 		try{
 		    Thread thread = Thread.currentThread();
-		    thread.sleep(1500);//ÔİÍ£1.5Ãëºó³ÌĞò¼ÌĞøÖ´ĞĞ
+		    thread.sleep(1500);//æš‚åœ1.5ç§’åç¨‹åºç»§ç»­æ‰§è¡Œ
 		}catch (InterruptedException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();

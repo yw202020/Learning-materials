@@ -15,26 +15,26 @@ public class client {
 //    DatagramSocket socket;
 //    socket = new DatagramSocket(1985);
     
-//	·½Ê½Ò»
+//	æ–¹å¼ä¸€
 	protected static void connectServerWithTCPSocket() {
 	        Socket socket;
-	        try {// ´´½¨Ò»¸öSocket¶ÔÏó£¬²¢Ö¸¶¨·şÎñ¶ËµÄIP¼°¶Ë¿ÚºÅ
+	        try {// åˆ›å»ºä¸€ä¸ªSocketå¯¹è±¡ï¼Œå¹¶æŒ‡å®šæœåŠ¡ç«¯çš„IPåŠç«¯å£å·
 	            socket = new Socket("127.0.0.1", 1989);
-	            // ´´½¨Ò»¸öInputStreamÓÃ»§¶ÁÈ¡Òª·¢ËÍµÄÎÄ¼ş¡£
+	            // åˆ›å»ºä¸€ä¸ªInputStreamç”¨æˆ·è¯»å–è¦å‘é€çš„æ–‡ä»¶ã€‚
 	            InputStream inputStream = new FileInputStream("d://message.txt");
-	            // »ñÈ¡SocketµÄOutputStream¶ÔÏóÓÃÓÚ·¢ËÍÊı¾İ¡£
+	            // è·å–Socketçš„OutputStreamå¯¹è±¡ç”¨äºå‘é€æ•°æ®ã€‚
 	            OutputStream outputStream = socket.getOutputStream();
-	            // ´´½¨Ò»¸öbyteÀàĞÍµÄbuffer×Ö½ÚÊı×é£¬ÓÃÓÚ´æ·Å¶ÁÈ¡µÄ±¾µØÎÄ¼ş
+	            // åˆ›å»ºä¸€ä¸ªbyteç±»å‹çš„bufferå­—èŠ‚æ•°ç»„ï¼Œç”¨äºå­˜æ”¾è¯»å–çš„æœ¬åœ°æ–‡ä»¶
 	            byte buffer[] = new byte[4 * 1024];
 	            int temp = 0;
-	            // Ñ­»·¶ÁÈ¡ÎÄ¼ş
+	            // å¾ªç¯è¯»å–æ–‡ä»¶
 	            while ((temp = inputStream.read(buffer)) != -1) {
-	                // °ÑÊı¾İĞ´Èëµ½OuputStream¶ÔÏóÖĞ
+	                // æŠŠæ•°æ®å†™å…¥åˆ°OuputStreamå¯¹è±¡ä¸­
 	                outputStream.write(buffer, 0, temp);
 	            }
-	            // ·¢ËÍ¶ÁÈ¡µÄÊı¾İµ½·şÎñ¶Ë
+	            // å‘é€è¯»å–çš„æ•°æ®åˆ°æœåŠ¡ç«¯
 	            outputStream.flush();
-	       /** »ò´´½¨Ò»¸ö±¨ÎÄ£¬Ê¹ÓÃBufferedWriterĞ´Èë,¿´ÄãµÄĞèÇó **/
+	       /** æˆ–åˆ›å»ºä¸€ä¸ªæŠ¥æ–‡ï¼Œä½¿ç”¨BufferedWriterå†™å…¥,çœ‹ä½ çš„éœ€æ±‚ **/
 	//            String socketData = "[2143213;21343fjks;213]";
 	//      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 	//                    socket.getOutputStream()));
@@ -49,36 +49,36 @@ public class client {
 	}
 	
 
-//	·½Ê½¶ş
+//	æ–¹å¼äºŒ
 	protected static void connectServerWithUDPSocket() {
 
 	    DatagramSocket socket;
 	    
         try {
-            //´´½¨DatagramSocket¶ÔÏó²¢Ö¸¶¨Ò»¸ö¶Ë¿ÚºÅ£¬×¢Òâ£¬Èç¹û¿Í»§¶ËĞèÒª½ÓÊÕ·şÎñÆ÷µÄ·µ»ØÊı¾İ,
-            //»¹ĞèÒªÊ¹ÓÃÕâ¸ö¶Ë¿ÚºÅÀ´receive£¬ËùÒÔÒ»¶¨Òª¼Ç×¡
+            //åˆ›å»ºDatagramSocketå¯¹è±¡å¹¶æŒ‡å®šä¸€ä¸ªç«¯å£å·ï¼Œæ³¨æ„ï¼Œå¦‚æœå®¢æˆ·ç«¯éœ€è¦æ¥æ”¶æœåŠ¡å™¨çš„è¿”å›æ•°æ®,
+            //è¿˜éœ€è¦ä½¿ç”¨è¿™ä¸ªç«¯å£å·æ¥receiveï¼Œæ‰€ä»¥ä¸€å®šè¦è®°ä½
             socket = new DatagramSocket(1985);
-            //Ê¹ÓÃInetAddress(Inet4Address).getByName°ÑIPµØÖ·×ª»»ÎªÍøÂçµØÖ·  
+            //ä½¿ç”¨InetAddress(Inet4Address).getByNameæŠŠIPåœ°å€è½¬æ¢ä¸ºç½‘ç»œåœ°å€  
             InetAddress serverAddress = InetAddress.getByName("127.0.0.1");
             //Inet4Address serverAddress = (Inet4Address) Inet4Address.getByName("192.168.1.32");  
-            String str = "[2143213;21343fjks;213]";//ÉèÖÃÒª·¢ËÍµÄ±¨ÎÄ  
-            byte data[] = str.getBytes();//°Ñ×Ö·û´®str×Ö·û´®×ª»»Îª×Ö½ÚÊı×é  
-            //´´½¨Ò»¸öDatagramPacket¶ÔÏó£¬ÓÃÓÚ·¢ËÍÊı¾İ¡£  
-            //²ÎÊıÒ»£ºÒª·¢ËÍµÄÊı¾İ  ²ÎÊı¶ş£ºÊı¾İµÄ³¤¶È  ²ÎÊıÈı£º·şÎñ¶ËµÄÍøÂçµØÖ·  ²ÎÊıËÄ£º·şÎñÆ÷¶Ë¶Ë¿ÚºÅ 
+            String str = "[2143213;21343fjks;213]";//è®¾ç½®è¦å‘é€çš„æŠ¥æ–‡  
+            byte data[] = str.getBytes();//æŠŠå­—ç¬¦ä¸²strå­—ç¬¦ä¸²è½¬æ¢ä¸ºå­—èŠ‚æ•°ç»„  
+            //åˆ›å»ºä¸€ä¸ªDatagramPacketå¯¹è±¡ï¼Œç”¨äºå‘é€æ•°æ®ã€‚  
+            //å‚æ•°ä¸€ï¼šè¦å‘é€çš„æ•°æ®  å‚æ•°äºŒï¼šæ•°æ®çš„é•¿åº¦  å‚æ•°ä¸‰ï¼šæœåŠ¡ç«¯çš„ç½‘ç»œåœ°å€  å‚æ•°å››ï¼šæœåŠ¡å™¨ç«¯ç«¯å£å· 
             DatagramPacket packet = new DatagramPacket(data, data.length ,serverAddress ,10025);  
-            socket.send(packet);//°ÑÊı¾İ·¢ËÍµ½·şÎñ¶Ë¡£  
+            socket.send(packet);//æŠŠæ•°æ®å‘é€åˆ°æœåŠ¡ç«¯ã€‚  
 //            socket.close();
             
-          //ÊµÀı»¯µÄ¶Ë¿ÚºÅÒªºÍ·¢ËÍÊ±µÄsocketÒ»ÖÂ£¬·ñÔòÊÕ²»µ½data
+          //å®ä¾‹åŒ–çš„ç«¯å£å·è¦å’Œå‘é€æ—¶çš„socketä¸€è‡´ï¼Œå¦åˆ™æ”¶ä¸åˆ°data
 //            socket = new DatagramSocket(1985);
             byte data2[] = new byte[4 * 1024];
-            //²ÎÊıÒ»:Òª½ÓÊÜµÄdata ²ÎÊı¶ş£ºdataµÄ³¤¶È
+            //å‚æ•°ä¸€:è¦æ¥å—çš„data å‚æ•°äºŒï¼šdataçš„é•¿åº¦
             DatagramPacket packet2 = new DatagramPacket(data2, data2.length);
             socket.receive(packet2);
-            //°Ñ½ÓÊÕµ½µÄdata×ª»»ÎªString×Ö·û´®
+            //æŠŠæ¥æ”¶åˆ°çš„dataè½¬æ¢ä¸ºStringå­—ç¬¦ä¸²
             String result = new String(packet2.getData(), packet2.getOffset(),
                     packet2.getLength());
-//            socket.close();//²»Ê¹ÓÃÁË¼ÇµÃÒª¹Ø±Õ
+//            socket.close();//ä¸ä½¿ç”¨äº†è®°å¾—è¦å…³é—­
             int flag = 1;
             System.out.println("the number of reveived Socket is  :" + flag
                     + "udpData:" + result);
@@ -91,20 +91,20 @@ public class client {
             e.printStackTrace();
         }  
 }
-	//android¶Ë½ÓÊÕ·şÎñÆ÷·µ»ØµÄÊı¾İ£º
+	//androidç«¯æ¥æ”¶æœåŠ¡å™¨è¿”å›çš„æ•°æ®ï¼š
 	public static void ReceiveServerSocketData() {
         DatagramSocket socket;
         try {
-            //ÊµÀı»¯µÄ¶Ë¿ÚºÅÒªºÍ·¢ËÍÊ±µÄsocketÒ»ÖÂ£¬·ñÔòÊÕ²»µ½data
+            //å®ä¾‹åŒ–çš„ç«¯å£å·è¦å’Œå‘é€æ—¶çš„socketä¸€è‡´ï¼Œå¦åˆ™æ”¶ä¸åˆ°data
             socket = new DatagramSocket(1985);
             byte data[] = new byte[4 * 1024];
-            //²ÎÊıÒ»:Òª½ÓÊÜµÄdata ²ÎÊı¶ş£ºdataµÄ³¤¶È
+            //å‚æ•°ä¸€:è¦æ¥å—çš„data å‚æ•°äºŒï¼šdataçš„é•¿åº¦
             DatagramPacket packet = new DatagramPacket(data, data.length);
             socket.receive(packet);
-            //°Ñ½ÓÊÕµ½µÄdata×ª»»ÎªString×Ö·û´®
+            //æŠŠæ¥æ”¶åˆ°çš„dataè½¬æ¢ä¸ºStringå­—ç¬¦ä¸²
             String result = new String(packet.getData(), packet.getOffset(),
                     packet.getLength());
-            socket.close();//²»Ê¹ÓÃÁË¼ÇµÃÒª¹Ø±Õ
+            socket.close();//ä¸ä½¿ç”¨äº†è®°å¾—è¦å…³é—­
             int flag = 1;
             System.out.println("the number of reveived Socket is  :" + flag
                     + "udpData:" + result);
@@ -122,7 +122,7 @@ public class client {
 //		connectServerWithTCPSocket();
 		connectServerWithUDPSocket();
 
-		System.out.println("·¢ËÍ³É¹¦ ...");
+		System.out.println("å‘é€æˆåŠŸ ...");
 		
 //		ReceiveServerSocketData();
 	}
