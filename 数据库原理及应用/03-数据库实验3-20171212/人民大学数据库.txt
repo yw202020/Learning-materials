@@ -1,0 +1,75 @@
+--周永老师编写
+
+Use master
+Go
+
+--drop Database RendaStu
+Create Database RendaStu
+Go
+
+Use RendaStu
+Go
+
+Create Table Student
+(
+  Sno char(9) NOT NULL Constraint PK_Stu_No Primary Key,
+  Sname varchar(10) NOT NULL,
+  Ssex char(2) NULL,
+  Sage smallint NULL,
+  Sdept char(2) NULL
+)
+Go
+
+Create Table Course
+(
+  Cno int NOT NULL Constraint PK_Course_No Primary Key,
+  Cname varchar(50) NOT NULL,
+  Cpno int NULL,
+  Ccredit tinyint NULL --tinyint存储0到255之间整数
+)
+Go
+
+Create Table SC
+(
+  Sno char(9) NOT NULL,
+  Cno int NOT NULL,
+  Grade numeric(4,1)  NULL
+)
+Go
+
+Alter Table SC
+Add Constraint FK_Stu_SC
+foreign key (Sno)
+References Student(Sno)
+go
+
+Alter Table SC
+Add Constraint FK_Course_SC
+foreign key (Cno)
+References Course(Cno)
+go
+
+Insert into Student Values('201215121','李勇','男',20,'CS')
+Insert into Student Values('201215122','刘晨','女',19,'CS')
+Insert into Student Values('201215123','王敏','女',18,'MA')
+Insert into Student Values('201215125','张立','男',19,'IS')
+Go
+
+Insert into Course Values(1,'数据库',5,4)
+Insert into Course Values(2,'数学',NULL,2)
+Insert into Course Values(3,'信息系统',1,4)
+Insert into Course Values(4,'操作系统',6,3)
+Insert into Course Values(5,'数据结构',7,4)
+Insert into Course Values(6,'数据处理',NULL,2)
+Insert into Course Values(7,'PASCAL语言',6,4)
+Go
+
+Insert into SC Values('201215121',1,92)
+Insert into SC Values('201215121',2,85)
+Insert into SC Values('201215121',3,88)
+Insert into SC Values('201215122',1,90)
+Insert into SC Values('201215122',3,80)
+Go
+
+
+select * from Student
