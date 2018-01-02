@@ -1,0 +1,17 @@
+17:46 2018/1/2
+
+select Student.cNo as 学号,Student.vName as 姓名 ,Course.cCourseNo as 课程号 ,Course.vCourseName as 课程名,Score.nScore as 成绩
+from Score, Student ,Course
+where Score.cNo =Student.cNo  and Score.cCourseNo=Course.cCourseNo
+go
+
+create proc prcFindByName  @name varchar(30)
+as 
+select Student.cNo as 学号,Student.vName as 姓名 ,Course.cCourseNo as 课程号 ,Course.vCourseName as 课程名,Score.nScore as 成绩
+from Score, Student ,Course
+where Score.cNo =Student.cNo  and Score.cCourseNo=Course.cCourseNo
+and Student.vName like '%'+@name+'%'
+go
+
+exec prcFindByName '李玲'
+go 
